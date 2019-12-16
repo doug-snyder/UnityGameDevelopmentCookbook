@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ListItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Text labelText;
+
+    public string Label
     {
-        
+        get
+        {
+            return labelText.text;
+        }
+        set
+        {
+            labelText.text = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

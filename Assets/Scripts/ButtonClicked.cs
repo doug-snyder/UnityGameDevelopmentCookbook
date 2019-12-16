@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ButtonClicked : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public void ButtonWasClicked()
+	{
+		Debug.Log("The button was clicked.");
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void ButtonWasClickedWithParameter(string parameter)
+	{
+		string message = string.Format("The button was clicked: {0}", parameter);
+		Debug.Log(message);
+	}
+
+	void PrivateButtonWasClicked()
+	{
+		Debug.Log("This won't run as the direct result of a button click!");
+	}
+
 }

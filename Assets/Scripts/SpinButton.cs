@@ -1,18 +1,35 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinButtons : MonoBehaviour
+
+public class SpinButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float spinTime = 0.5f;
+    [SerializeField] AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    private IEnumerator StartSpinning()
     {
-        
+        if (spinTime <= 0)
+        {
+            yield break;
+        }
+
+        float elapsed = 0f;
+
+        while (elapsed < spinTime)
+        {
+            elapsed += Time.deltaTime;
+            var t = elapsed / spinTime;
+            var angle = curve.Evaluate(t) * 360f;
+            transform.localRotation = Quaternion.AngleAxis(angle, Vector3.right);
+
+            yield return null;
+        }
+
+        transform.localRotation = Quaternion.identity;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Spin()
     {
-        
+        StartCoroutine(StartSpinning());
     }
 }
